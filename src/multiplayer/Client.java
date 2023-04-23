@@ -1,6 +1,8 @@
-/*package pong.multiplayer;
+package pong.multiplayer;
 
 
+
+import pong.GameFrame;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -82,17 +84,17 @@ public class Client extends Thread {
                 while (true) {
 
                     // read a Data object from the server
-                    DataServer dataServer = null;
+                    DataServer dataServer;
                     try {
                         dataServer = (DataServer) inputStream.readObject();
                         System.out.println("Received data from server: " + dataServer.yPaddle);
                         gameFrame.panel.score.player1 = dataServer.scorePlayer1;
                         gameFrame.panel.score.player2 = dataServer.scorePlayer2;
-                        gameFrame.panel.paddle2.y = dataServer.yPaddle;
-                        gameFrame.panel.ball1.x = dataServer.xBall;
-                        gameFrame.panel.ball1.y = dataServer.yBall;
-                        gameFrame.panel.ball1.xVelocity = dataServer.xVelocity;
-                        gameFrame.panel.ball1.yVelocity = dataServer.yVelocity;
+                        gameFrame.panel.paddle3.y = dataServer.yPaddle;
+                        gameFrame.panel.ball.x = dataServer.xBall;
+                        gameFrame.panel.ball.y = dataServer.yBall;
+                        gameFrame.panel.ball.xVelocity = dataServer.xVelocity;
+                        gameFrame.panel.ball.yVelocity = dataServer.yVelocity;
                     } catch (IOException | ClassNotFoundException ignored) {
                     }
 
@@ -114,4 +116,4 @@ public class Client extends Thread {
 
         Client client = new Client("localhost");
     }
-}*/
+}

@@ -1,5 +1,8 @@
 package pong;
 
+import pong.multiplayer.Client;
+import pong.multiplayer.Server;
+
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Window;
@@ -31,6 +34,8 @@ public class TwoPlayerFrame extends JFrame {
 	private static final int frameWidth = 800;
 	private static final int frameHeight = 400;
 	public static GameFrame game;
+	public Client client;
+	public Server server;
 	public static int scoreLimit;
 
 	TwoPlayerFrame() {
@@ -45,10 +50,13 @@ public class TwoPlayerFrame extends JFrame {
 		this.setLocationRelativeTo(null);
 		this.setSize(frameWidth, frameHeight);
 
-		JButton startButton = new JButton("<html><font color=red size=4><b>START!</b></html>");
+		JButton startButton = new JButton("<html><font color=blue size=4><b>START!</b></html>");
 		startButton.setBounds(310, 280, 180, 70);
+		JButton createButton = new JButton("<html><font color=red size=4><b>CREATE!</b></html>");
+		createButton.setBounds(310, 200, 180, 70);
 		panel.setLayout(null);
 		panel.add(startButton);
+		panel.add(createButton);
 
 		Icon icon = new ImageIcon("C:\\Users\\IMOE001\\Desktop\\java-pong-game-main\\src\\images\\back.png");
 		JButton back = new JButton(icon);
@@ -157,7 +165,42 @@ public class TwoPlayerFrame extends JFrame {
 				System.out.println(player1 + "'s Paddle Color: " + (String) paddleColorComboBoxLeft.getSelectedItem());
 				System.out.println(player2 + "'s Paddle Color: " + (String) paddleColorComboBoxRight.getSelectedItem());
 				System.out.println("************************************");
-				game = new GameFrame();
+				try {
+					client = new Client("localhost");
+				} catch (Exception e) {
+					throw new RuntimeException(e);
+				}
+				Timer.start();
+				JComponent comp = (JComponent) ev.getSource();
+				Window win = SwingUtilities.getWindowAncestor(comp);
+				win.dispose();
+
+			}
+		});
+
+		createButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent ev) {
+				if (user1.getText().length() > 1)
+					player1 = user1.getText();
+				else
+					player1 = "Player1";
+				if (user2.getText().length() > 1)
+					player2 = user2.getText();
+				else
+					player2 = "Player2";
+				scoreLimit = (int) spinner.getValue();
+				System.out.println("************************************");
+				System.out.println(player1 + " VS " + player2);
+				System.out.println("Score Limit: " + scoreLimit);
+				System.out.println("Ball Color: " + (String) ballColorComboBox.getSelectedItem());
+				System.out.println(player1 + "'s Paddle Color: " + (String) paddleColorComboBoxLeft.getSelectedItem());
+				System.out.println(player2 + "'s Paddle Color: " + (String) paddleColorComboBoxRight.getSelectedItem());
+				System.out.println("************************************");
+				try {
+					Server server = new Server();
+				} catch (InterruptedException e) {
+					throw new RuntimeException(e);
+				}
 				Timer.start();
 				JComponent comp = (JComponent) ev.getSource();
 				Window win = SwingUtilities.getWindowAncestor(comp);

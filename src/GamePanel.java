@@ -32,9 +32,9 @@ public class GamePanel extends JPanel implements Runnable {
 	Image image;
 	Graphics graphics;
 	Random random;
-	Paddle paddle1;// (SOL)
-	Paddle paddle3;// (SAG)
-	Ball ball;
+	public Paddle paddle1;// (SOL)
+	public Paddle paddle3;// (SAG)
+	public Ball ball;
 	AI_paddle paddle2;
 	public static Score score;
 	private int scoreLimit;

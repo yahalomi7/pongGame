@@ -6,8 +6,8 @@ public class Score extends Rectangle{
 
 	static int gameWidth;
 	static int gameHeight;
-	int player1;
-	int player2;
+	public int player1;
+	public int player2;
 	
 	Score(int GAME_WIDTH, int GAME_HEIGHT){
 		Score.gameWidth = GAME_WIDTH;

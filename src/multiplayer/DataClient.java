@@ -1,5 +1,7 @@
-/*package pong.multiplayer;
+package pong.multiplayer;
 
+
+import pong.Paddle;
 
 public class DataClient {
     Integer yPaddle;
@@ -8,4 +10,3 @@ public class DataClient {
         this.yPaddle = paddle.y;
     }
 }
-*/

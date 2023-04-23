@@ -1,6 +1,8 @@
-/*package pong.multiplayer;
+package pong.multiplayer;
 
-import GameFrame;
+import pong.Ball;
+import pong.Paddle;
+import pong.Score;
 
 import java.io.Serializable;
 
@@ -26,5 +28,4 @@ public class DataServer implements Serializable {
         this.scorePlayer1 = (byte) score.player1;
         this.scorePlayer2 = (byte) score.player2;
     }
-
-}*/
+}

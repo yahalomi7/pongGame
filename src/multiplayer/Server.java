@@ -1,8 +1,6 @@
-/*package pong.multiplayer;
+package pong.multiplayer;
 
-
-
-
+import pong.GameFrame;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -60,7 +58,7 @@ public class Server extends Thread {
                 while (true) {
 
                     // write a Data object to the client
-                    DataServer dataServer = new DataServer(gameFrame.panel.ball1, gameFrame.panel.paddle2, gameFrame.panel.score);
+                    DataServer dataServer = new DataServer(gameFrame.panel.ball, gameFrame.panel.paddle1, gameFrame.panel.score);
                     try {
                         outputStream.writeObject(dataServer);
                         System.out.println("Sent data to client: " + dataServer.yPaddle);
@@ -92,7 +90,7 @@ public class Server extends Thread {
                     try {
                         dataClient = (DataClient) inputStream.readObject();
                         System.out.println("Received data from client: " + dataClient.yPaddle);
-                        gameFrame.panel.paddle1.y = dataClient.yPaddle;
+                        gameFrame.panel.paddle3.y = dataClient.yPaddle;
                     } catch (IOException | ClassNotFoundException ignored) {
                     }
 
@@ -113,4 +111,4 @@ public class Server extends Thread {
 
         Server server = new Server();
     }
-}*/
+}
